@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:password_genarator/controller/core/constent.dart';
+import 'package:password_genarator/view/home_screen/home_screen.dart';
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: CustomClr.kblack,
+      body: Center(
+        child: Text(
+          "Password Genarator",
+          style: CustomFuc.textStyleFuc(
+              fontWeight: FontWeight.bold, color: CustomClr.kwhite, size: 16),
+        ),
+      ),
+    );
+  }
+
+  Future<void> navigatorToHome(context) async {
+    await Future.delayed(const Duration(seconds: 3), () {});
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
+  }
+}
