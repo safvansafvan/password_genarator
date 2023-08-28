@@ -13,6 +13,12 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: CustomClr.kblack,
       appBar: AppBar(
         backgroundColor: CustomClr.kblack,
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.menu,
+              color: CustomClr.kwhite,
+            )),
         title: Text(
           "Password Genarator",
           style: CustomFuc.textStyleFuc(
