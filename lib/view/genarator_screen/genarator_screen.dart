@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:password_genarator/controller/core/constent.dart';
+import 'package:password_genarator/view/history_screen/history_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -164,16 +165,25 @@ class HomeScreen extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 25),
               child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'History',
-                        style: CustomFuc.textStyleFuc(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey,
-                            size: 14),
-                      ))),
+                alignment: Alignment.bottomRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HistoryScreen(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'History',
+                    style: CustomFuc.textStyleFuc(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
+                        size: 14),
+                  ),
+                ),
+              ),
             )
           ],
         ),
