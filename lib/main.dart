@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password_genarator/view/home_screen/splash/splash.dart';
+import 'package:password_genarator/view/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());

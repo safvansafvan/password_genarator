@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:password_genarator/controller/core/constent.dart';
-import 'package:password_genarator/view/home_screen/home_screen.dart';
+import 'package:password_genarator/view/genarator_screen/genarator_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

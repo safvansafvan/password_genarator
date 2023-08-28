@@ -13,3 +13,9 @@ class CustomFuc {
     return TextStyle(fontWeight: fontWeight, color: color, fontSize: size);
   }
 }
+
+class CustomHeight {
+  static var commonHeight = const SizedBox(
+    height: 20,
+  );
+}
