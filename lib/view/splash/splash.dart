@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:password_genarator/controller/core/constent.dart';
-import 'package:password_genarator/view/home_screen/home_screen.dart';
+import 'package:password_genarator/view/genarator_screen/genarator_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      navigatorToHome(context);
+    });
     return Scaffold(
       backgroundColor: CustomClr.kblack,
       body: Center(
         child: Text(
           "Password Genarator",
           style: CustomFuc.textStyleFuc(
-              fontWeight: FontWeight.bold, color: CustomClr.kwhite, size: 16),
+              fontWeight: FontWeight.bold, color: CustomClr.kwhite, size: 20),
         ),
       ),
     );
