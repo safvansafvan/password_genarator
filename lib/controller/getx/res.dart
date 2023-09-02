@@ -1,6 +1,10 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Controller extends GetxController {
+  TextEditingController passwordController = TextEditingController();
   RxBool numbers = false.obs;
   RxBool charector = false.obs;
   RxBool specialChar = false.obs;
@@ -24,5 +28,25 @@ class Controller extends GetxController {
   void sliderUpdates(double value) {
     sliderValue.value = value.toInt();
     update();
+  }
+
+  String genaratePassword(
+      {required int length,
+      bool numbers = true,
+      bool letters = true,
+      bool specialCharec = true}) {
+    String chars = '';
+    const letterLowerCase = "abcdefghijklmnopqrstuvwxyz";
+    const letterUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const number = '0123456789';
+    const special = '@#%^*>\$@?/[]=+';
+
+    if (numbers) chars += number;
+    if (letters) chars += '$letterLowerCase $letterUpperCase';
+    if (specialCharec) chars += special;
+    return List.generate(length, (index) {
+      final indexRadom = Random.secure().nextInt(chars.length);
+      return chars[indexRadom];
+    }).join('');
   }
 }

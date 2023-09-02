@@ -51,7 +51,13 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  const Center(child: Text("Password")),
+                  Center(
+                      child: TextFormField(
+                    decoration:
+                        const InputDecoration(enabledBorder: InputBorder.none),
+                    readOnly: true,
+                    controller: controller.passwordController,
+                  )),
                   Positioned(
                     bottom: 5,
                     right: 5,
@@ -175,7 +181,14 @@ class HomeScreen extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  controller.passwordController.text =
+                      controller.genaratePassword(
+                          length: controller.sliderValue.value,
+                          letters: controller.charector.value,
+                          numbers: controller.numbers.value,
+                          specialCharec: controller.specialChar.value);
+                },
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
