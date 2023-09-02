@@ -53,10 +53,13 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Center(
                       child: TextFormField(
-                    decoration:
-                        const InputDecoration(enabledBorder: InputBorder.none),
+                    decoration: const InputDecoration(
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none),
                     readOnly: true,
+                    textAlign: TextAlign.center,
                     controller: controller.passwordController,
+                    style: const TextStyle(fontSize: 20),
                   )),
                   Positioned(
                     bottom: 5,
