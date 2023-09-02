@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:password_genarator/controller/core/constent.dart';
+import 'package:password_genarator/controller/getx/res.dart';
 import 'package:password_genarator/view/history_screen/history_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,8 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool switchvalue = true;
-    double sliderValue = 12;
+    final controller = Get.put(Controller());
     return Scaffold(
       backgroundColor: CustomClr.kblack,
       appBar: AppBar(
@@ -83,10 +84,14 @@ class HomeScreen extends StatelessWidget {
                             color: CustomClr.kwhite,
                             size: 17),
                       ),
-                      Switch(
-                        value: switchvalue,
-                        onChanged: (value) {},
-                      )
+                      GetBuilder<Controller>(builder: (_) {
+                        return Switch(
+                          value: controller.numbers.value,
+                          onChanged: (value) {
+                            controller.numbersONorOff(value);
+                          },
+                        );
+                      })
                     ],
                   ),
                   CustomHeight.commonHeight,
@@ -100,10 +105,14 @@ class HomeScreen extends StatelessWidget {
                             color: CustomClr.kwhite,
                             size: 17),
                       ),
-                      Switch(
-                        value: switchvalue,
-                        onChanged: (value) {},
-                      )
+                      GetBuilder<Controller>(builder: (_) {
+                        return Switch(
+                          value: controller.charector.value,
+                          onChanged: (value) {
+                            controller.charectorsOnorOff(value);
+                          },
+                        );
+                      })
                     ],
                   ),
                   CustomHeight.commonHeight,
@@ -117,10 +126,14 @@ class HomeScreen extends StatelessWidget {
                             color: CustomClr.kwhite,
                             size: 17),
                       ),
-                      Switch(
-                        value: switchvalue,
-                        onChanged: (value) {},
-                      )
+                      GetBuilder<Controller>(builder: (_) {
+                        return Switch(
+                          value: controller.specialChar.value,
+                          onChanged: (value) {
+                            controller.specialCharectorOnorOff(value);
+                          },
+                        );
+                      })
                     ],
                   ),
                   CustomHeight.commonHeight,
@@ -134,19 +147,25 @@ class HomeScreen extends StatelessWidget {
                             color: CustomClr.kwhite,
                             size: 17),
                       ),
-                      Slider(
-                        value: sliderValue,
-                        min: 5,
-                        max: 20,
-                        onChanged: (value) {},
-                      ),
-                      Text(
-                        "20",
-                        style: CustomFuc.textStyleFuc(
-                            fontWeight: FontWeight.bold,
-                            color: CustomClr.kwhite,
-                            size: 15),
-                      )
+                      GetBuilder<Controller>(builder: (_) {
+                        return Slider(
+                          value: controller.sliderValue.value.toDouble(),
+                          min: 6,
+                          max: 15,
+                          onChanged: (value) {
+                            controller.sliderUpdates(value);
+                          },
+                        );
+                      }),
+                      GetBuilder<Controller>(builder: (_) {
+                        return Text(
+                          "${controller.sliderValue.value}",
+                          style: CustomFuc.textStyleFuc(
+                              fontWeight: FontWeight.bold,
+                              color: CustomClr.kwhite,
+                              size: 15),
+                        );
+                      })
                     ],
                   ),
                 ],
