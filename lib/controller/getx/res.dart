@@ -4,11 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Controller extends GetxController {
+  RxString passwords = ''.obs;
   TextEditingController passwordController = TextEditingController();
   RxBool numbers = false.obs;
   RxBool charector = false.obs;
   RxBool specialChar = false.obs;
   RxInt sliderValue = 6.obs;
+
+  void password() {
+    passwords.value = passwordController.text;
+    update();
+  }
 
   void numbersONorOff(bool numbersField) {
     numbers.value = numbersField;

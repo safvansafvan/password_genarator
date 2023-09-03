@@ -21,4 +21,11 @@ class DatabaseFuctions extends GetxController {
     passwordHistory.addAll(passwordBox.values);
     update();
   }
+
+  Future deletePassword() async {
+    final passwordBox = await Hive.openBox<PasswordModel>('password_database');
+    passwordBox.clear();
+    getAllPassword();
+    update();
+  }
 }

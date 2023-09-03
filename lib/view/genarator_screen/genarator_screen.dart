@@ -59,23 +59,15 @@ class HomeScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   Center(
-                      child: controller.passwordController.text.isEmpty
-                          ? Text(
-                              'Password Is Empty',
-                              style: CustomFuc.textStyleFuc(
-                                  fontWeight: FontWeight.w500,
-                                  color: CustomClr.kblack,
-                                  size: 16),
-                            )
-                          : TextFormField(
-                              decoration: const InputDecoration(
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none),
-                              readOnly: true,
-                              textAlign: TextAlign.center,
-                              controller: controller.passwordController,
-                              style: const TextStyle(fontSize: 20),
-                            )),
+                      child: TextFormField(
+                    decoration: const InputDecoration(
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none),
+                    readOnly: true,
+                    textAlign: TextAlign.center,
+                    controller: controller.passwordController,
+                    style: const TextStyle(fontSize: 20),
+                  )),
                   Positioned(
                     bottom: 5,
                     right: 5,
@@ -200,10 +192,19 @@ class HomeScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () async {
-                  await genarateButtonClick(
-                      controller: controller,
-                      dbController: dbController,
-                      context: context);
+                  if (controller.charector.isFalse &&
+                      controller.numbers.isFalse &&
+                      controller.specialChar.isFalse) {
+                    CommonSnackBar.snackBar(
+                        title: "Add Any Condition",
+                        clr: CustomClr.kred,
+                        context: context);
+                  } else {
+                    await genarateButtonClick(
+                        controller: controller,
+                        dbController: dbController,
+                        context: context);
+                  }
                 },
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(
@@ -249,23 +250,15 @@ class HomeScreen extends StatelessWidget {
       {required Controller controller,
       required DatabaseFuctions dbController,
       required context}) async {
-    if (controller.charector.isFalse ||
-        controller.numbers.isFalse ||
-        controller.specialChar.isFalse) {
-      CommonSnackBar.snackBar(
-          title: "Add Any Condition", clr: CustomClr.kred, context: context);
-    } else {
-      controller.passwordController.text = controller.genaratePassword(
-          length: controller.sliderValue.value,
-          letters: controller.charector.value,
-          numbers: controller.numbers.value,
-          specialCharec: controller.specialChar.value);
-      DateTime date = DateTime.now();
-      String time = "${date.hour}:${date.minute}";
-      PasswordModel passwordModel = PasswordModel(
-          password: controller.passwordController.text, time: time);
-
-      await dbController.addPassword(passwordModel);
-    }
+    controller.passwordController.text = controller.genaratePassword(
+        length: controller.sliderValue.value,
+        letters: controller.charector.value,
+        numbers: controller.numbers.value,
+        specialCharec: controller.specialChar.value);
+    DateTime date = DateTime.now();
+    String time = "${date.hour}:${date.minute}";
+    PasswordModel passwordModel =
+        PasswordModel(password: controller.passwordController.text, time: time);
+    await dbController.addPassword(passwordModel);
   }
 }
