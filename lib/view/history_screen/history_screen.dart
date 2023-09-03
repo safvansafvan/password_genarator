@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:password_genarator/controller/getx/db.dart';
 import 'package:password_genarator/controller/core/constent.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -6,6 +8,7 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dbController = Get.put(DatabaseFuctions());
     return Scaffold(
       backgroundColor: CustomClr.kblack,
       appBar: AppBar(
@@ -21,7 +24,7 @@ class HistoryScreen extends StatelessWidget {
         title: Text(
           "Password History",
           style: CustomFuc.textStyleFuc(
-              fontWeight: FontWeight.w500, color: CustomClr.kwhite, size: 16),
+              fontWeight: FontWeight.w500, color: CustomClr.kwhite, size: 19),
         ),
         actions: [
           IconButton(
@@ -35,34 +38,62 @@ class HistoryScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(30),
-        child: ListView(
+        child: Column(
           children: [
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 19,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.deepPurple[300],
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Center(
-                      child: Text(
-                        "Password",
-                        style: CustomFuc.textStyleFuc(
-                            fontWeight: FontWeight.w500,
-                            color: CustomClr.kwhite,
-                            size: 15),
-                      ),
+            dbController.passwordHistory.isEmpty
+                ? Center(
+                    child: Text(
+                      "NOT FOUND",
+                      style: CustomFuc.textStyleFuc(
+                          fontWeight: FontWeight.bold,
+                          color: CustomClr.kwhite,
+                          size: 18),
                     ),
+                  )
+                : ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: dbController.passwordHistory.length,
+                    itemBuilder: (context, index) {
+                      final password = dbController.passwordHistory[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 60,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple[300],
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Stack(
+                            children: [
+                              Center(
+                                child: Text(
+                                  password.password,
+                                  style: CustomFuc.textStyleFuc(
+                                    fontWeight: FontWeight.w500,
+                                    color: CustomClr.kwhite,
+                                    size: 15,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 2,
+                                right: 10,
+                                child: Text(
+                                  password.time,
+                                  style: CustomFuc.textStyleFuc(
+                                      fontWeight: FontWeight.w500,
+                                      color: CustomClr.kwhite,
+                                      size: 16),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            )
           ],
         ),
       ),

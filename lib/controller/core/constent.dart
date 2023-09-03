@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class CustomClr {
   static Color kwhite = Colors.white;
   static Color kblack = Colors.black;
+  static Color kred = Colors.red;
+  static Color kgreen = Colors.green;
 }
 
 class CustomFuc {
