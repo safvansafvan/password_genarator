@@ -56,28 +56,27 @@ class ButtonsFieldsWidget extends StatelessWidget {
                   },
                 );
               }),
-              CustomHeight.commonHeight(context),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Special Charectors",
-                    style: CustomFuc.textStyleFuc(
-                        fontWeight: FontWeight.bold,
-                        color: CustomClr.kwhite,
-                        size: 17),
-                  ),
-                  GetBuilder<Controller>(builder: (_) {
-                    return Switch(
-                      value: controller.specialChar.value,
-                      onChanged: (value) {
-                        controller.specialCharectorOnorOff(value);
-                      },
-                    );
-                  })
-                ],
+            ],
+          ),
+          CustomHeight.commonHeight(context),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Special Charectors",
+                style: CustomFuc.textStyleFuc(
+                    fontWeight: FontWeight.bold,
+                    color: CustomClr.kwhite,
+                    size: 17),
               ),
-              CustomHeight.commonHeight(context),
+              GetBuilder<Controller>(builder: (_) {
+                return Switch(
+                  value: controller.specialChar.value,
+                  onChanged: (value) {
+                    controller.specialCharectorOnorOff(value);
+                  },
+                );
+              })
             ],
           ),
           Row(
