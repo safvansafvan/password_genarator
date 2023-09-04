@@ -1,9 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:password_genarator/controller/core/constent.dart';
 import 'package:password_genarator/controller/getx/db.dart';
+import 'package:password_genarator/view/widgets/snack_bar.dart';
 
 class DeleteDialog {
-  static void deleteDialog(context) {
+  static Future deleteDialog(context) async {
     final dbController = Get.put(DatabaseFuctions());
     showDialog(
         context: context,
@@ -18,10 +22,14 @@ class DeleteDialog {
                     child: const Text("Cancel")),
                 TextButton(
                     onPressed: () async {
+                      await dbController.clearAllPasswords();
                       Navigator.pop(context);
-                      await dbController.deletePassword();
+                      CommonSnackBar.snackBar(
+                          title: "Deleted All Paswords",
+                          clr: CustomClr.kred,
+                          context: context);
                     },
-                    child: const Text("Ok"))
+                    child: const Text("Ok")),
               ],
             ));
   }

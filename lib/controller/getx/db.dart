@@ -3,7 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:password_genarator/model/password.dart';
 
 class DatabaseFuctions extends GetxController {
-  List<PasswordModel> passwordHistory = [];
+  RxList<PasswordModel> passwordHistory = <PasswordModel>[].obs;
   Future addPassword(PasswordModel data) async {
     final passwordBox = await Hive.openBox<PasswordModel>('password_database');
     final id = await passwordBox.add(data);
@@ -22,9 +22,16 @@ class DatabaseFuctions extends GetxController {
     update();
   }
 
-  Future deletePassword() async {
+  Future clearAllPasswords() async {
     final passwordBox = await Hive.openBox<PasswordModel>('password_database');
     passwordBox.clear();
+    getAllPassword();
+    update();
+  }
+
+  Future deletePassword(int id) async {
+    final passwordBox = await Hive.openBox<PasswordModel>('password_database');
+    passwordBox.delete(id);
     getAllPassword();
     update();
   }

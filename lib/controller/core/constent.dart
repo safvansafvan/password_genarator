@@ -17,7 +17,11 @@ class CustomFuc {
 }
 
 class CustomHeight {
-  static var commonHeight = const SizedBox(
-    height: 20,
-  );
+  static commonHeight(context) {
+    Size size = MediaQuery.of(context).size;
+    var commonHeight = SizedBox(
+      height: size.height * 0.03,
+    );
+    return commonHeight;
+  }
 }
