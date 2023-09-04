@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:password_genarator/model/password.dart';
-import 'package:password_genarator/view/splash/splash.dart';
+import 'package:password_genarator/view/screens/splash/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
