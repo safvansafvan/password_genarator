@@ -25,7 +25,7 @@ class HistoryScreen extends StatelessWidget {
               color: CustomClr.kwhite,
             )),
         title: Text(
-          "Password History",
+          "Passwords History",
           style: CustomFuc.textStyleFuc(
               fontWeight: FontWeight.w500, color: CustomClr.kwhite, size: 19),
         ),
@@ -43,7 +43,9 @@ class HistoryScreen extends StatelessWidget {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async {},
+        onRefresh: () async {
+          dbController.getAllPassword();
+        },
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(30),

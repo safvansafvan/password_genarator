@@ -79,6 +79,7 @@ class ButtonsFieldsWidget extends StatelessWidget {
               })
             ],
           ),
+          CustomHeight.commonHeight(context),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
