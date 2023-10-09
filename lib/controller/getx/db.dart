@@ -24,9 +24,8 @@ class DatabaseFuctions extends GetxController {
 
   Future clearAllPasswords() async {
     final passwordBox = await Hive.openBox<PasswordModel>('password_database');
-    passwordBox.clear();
-    getAllPassword();
-    update();
+    await passwordBox.clear();
+    await getAllPassword();
   }
 
   Future deletePassword(int id) async {

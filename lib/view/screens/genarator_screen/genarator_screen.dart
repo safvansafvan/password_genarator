@@ -15,9 +15,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final dbController = Get.put(DatabaseFuctions());
+    final DatabaseFuctions dbController =
+        Get.put(DatabaseFuctions(), permanent: true);
     dbController.getAllPassword();
-    final controller = Get.put(Controller());
+    final Controller controller = Get.put(Controller(), permanent: true);
     return Scaffold(
       backgroundColor: CustomClr.kblack,
       appBar: AppBar(

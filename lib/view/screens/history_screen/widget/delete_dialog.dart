@@ -21,12 +21,20 @@ class DeleteDialog {
                     child: const Text("Cancel")),
                 TextButton(
                     onPressed: () async {
-                      await dbController.clearAllPasswords();
+                      if (dbController.passwordHistory.isNotEmpty) {
+                        await dbController.clearAllPasswords();
+
+                        CommonSnackBar.snackBar(
+                            title: "Deleted All Paswords",
+                            clr: CustomClr.kred,
+                            context: context);
+                      } else {
+                        CommonSnackBar.snackBar(
+                            title: "Passwords Are Empty",
+                            clr: CustomClr.kgreen,
+                            context: context);
+                      }
                       Navigator.pop(context);
-                      CommonSnackBar.snackBar(
-                          title: "Deleted All Paswords",
-                          clr: CustomClr.kred,
-                          context: context);
                     },
                     child: const Text("Ok")),
               ],

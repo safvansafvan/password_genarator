@@ -50,35 +50,35 @@ class HistoryScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(30),
             child: Obx(
-              () => Column(
-                children: [
-                  dbController.passwordHistory.isEmpty
-                      ? Center(
+              () => dbController.passwordHistory.isEmpty
+                  ? Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomCenter,
                           child: Text(
-                            "NOT FOUND",
+                            'NOT FOUND',
                             style: CustomFuc.textStyleFuc(
                                 fontWeight: FontWeight.bold,
                                 color: CustomClr.kwhite,
-                                size: 18),
+                                size: 17),
                           ),
                         )
-                      : ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: dbController.passwordHistory.length,
-                          itemBuilder: (context, index) {
-                            final password =
-                                dbController.passwordHistory[index];
-                            return PasswordShowingWidget(
-                              screenHeight: screenHeight,
-                              password: password,
-                              dbController: dbController,
-                              index: dbController.passwordHistory[index].id!,
-                            );
-                          },
-                        ),
-                ],
-              ),
+                      ],
+                    )
+                  : ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: dbController.passwordHistory.length,
+                      itemBuilder: (context, index) {
+                        final password = dbController.passwordHistory[index];
+                        return PasswordShowingWidget(
+                          screenHeight: screenHeight,
+                          password: password,
+                          dbController: dbController,
+                          index: dbController.passwordHistory[index].id!,
+                        );
+                      },
+                    ),
             ),
           ),
         ),
