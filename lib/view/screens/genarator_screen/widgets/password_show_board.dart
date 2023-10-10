@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:password_genarator/controller/core/constent.dart';
 import 'package:password_genarator/controller/getx/res.dart';
-import 'package:password_genarator/view/widgets/snack_bar.dart';
 import 'package:share/share.dart';
 
 class PasswordShowingBoard extends StatelessWidget {
@@ -46,8 +44,10 @@ class PasswordShowingBoard extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {
-                      copyToClipboard(
-                          controller.passwordController.text, context);
+                      if (controller.passwordController.text.isNotEmpty) {
+                        copyToClipboard(
+                            controller.passwordController.text, context);
+                      }
                     },
                     icon: const Icon(Icons.copy_outlined)),
                 IconButton(
@@ -64,10 +64,7 @@ class PasswordShowingBoard extends StatelessWidget {
   }
 
   void copyToClipboard(String text, context) {
-    String copy = 'Copied';
     Clipboard.setData(ClipboardData(text: text));
-    CommonSnackBar.snackBar(
-        title: "{$text $copy}", clr: CustomClr.kgreen, context: context);
   }
 
   void sharePassword(String text) {
